@@ -28,7 +28,7 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "docker"     # ⚠️ change this for production
+              value: docker     # ⚠️ change this for production
             - name: MYSQL_DATABASE
               value: lhubdb
           volumeMounts:
@@ -75,7 +75,7 @@ spec:
         - name: backend
           image: shyamprasad10/docker-backend:latest
           ports:
-            - containerPort: 2000
+            - containerPort: 9050
 ---
 apiVersion: v1
 kind: Service
@@ -87,8 +87,8 @@ spec:
     app: backend
   ports:
     - protocol: TCP
-      port: 2000
-      targetPort: 2000
+      port: 9050
+      targetPort: 9050
       nodePort: 30025   # optional fixed NodePort (range 30000–32767)
   type: NodePort
 ---
